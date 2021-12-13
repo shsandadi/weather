@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import '../components/style.css'
 import WeatherDetails from './WeatherDetails';
 function SearchMain() {
@@ -8,15 +8,22 @@ function SearchMain() {
     //Async Functions
     //Promises
     //Try and Catch
-
-    //useEffect
-    //[searchTerm] the code in the flat arrow function will execute if any change happens in the searchTerm variable.
- //   [] In this we need to specify the value how many times we need to execute the function/code with in the function
- // [] if it is empty it will execute only when we load the page, it never execute after that
+    const getWeatherInfo =async  () =>{
+try{
+let url=`https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=0c49e4913229db4b96122bd473a874a0`;
+let res=await fetch(url);
+let data=await res.json();
+console.log(data);
+}catch(error){
+    console.log(error);
+}
+    }
+    
+    
     useEffect(
         () =>{
-//Code
-        },[searchTerm]
+            getWeatherInfo();
+        },[]
     )
     return (
         <>
