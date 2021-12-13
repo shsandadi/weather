@@ -13,7 +13,15 @@ try{
 let url=`https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=0c49e4913229db4b96122bd473a874a0`;
 let res=await fetch(url);
 let data=await res.json();
-console.log(data);
+
+const {temp,humidity,pressure}=data.main;
+const {main:weatherType}=data.weather[0];
+const {name}=data;
+const {speed}=data.wind;
+const {country,sunset} =data.sys;
+
+
+
 }catch(error){
     console.log(error);
 }
