@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function WeatherDetails({
   temp,
@@ -11,6 +11,27 @@ function WeatherDetails({
   sunset,
 }) {
   const [wetherState, setWetherState] = useState("");
+  useEffect(() => {
+    if (weatherType) {
+      switch (weatherType) {
+        case "Clouds":
+          setWetherState("wi-day-cloudy");
+          break;
+        case "Haze":
+          setWetherState("wi-fog");
+          break;
+        case "Clear":
+          setWetherState("wi-day-sunny");
+          break;
+        case "Mist":
+          setWetherState("wi-dust");
+          break;
+        case "Rain":
+          setWetherState("wi-day-rain");
+          break;
+      }
+    }
+  }, [weatherType]);
   //converting the seconds in time
   let sec = sunset;
   let date = new Date(sec * 1000);
@@ -19,7 +40,7 @@ function WeatherDetails({
     <div>
       <article className="widget">
         <div className="weatherIcon">
-          <i className="wi wi-day-sunny"></i>
+          <i className={`wi ${wetherState}`}></i>
         </div>
         <div className="weatherInfo">
           <div className="temperature">
