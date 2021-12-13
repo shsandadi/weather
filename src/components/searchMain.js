@@ -3,6 +3,7 @@ import '../components/style.css'
 import WeatherDetails from './WeatherDetails';
 function SearchMain() {
     const [searchTerm, setSearchTerm]=useState("mumbai");
+    const [tempInfo,setTempInfo]=useState({});
     //Hooks we use in this project
     //useEffect
     //Async Functions
@@ -20,8 +21,10 @@ const {name}=data;
 const {speed}=data.wind;
 const {country,sunset} =data.sys;
 
-
-
+const myNewWeatherInfo={
+    temp,humidity,pressure, weatherType,name,speed,country,sunset,
+};
+setTempInfo(myNewWeatherInfo);
 }catch(error){
     console.log(error);
 }
